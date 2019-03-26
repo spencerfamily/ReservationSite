@@ -37,6 +37,9 @@ namespace ReservationSite
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ReservationsDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("ReservationDbConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddAuthentication()
