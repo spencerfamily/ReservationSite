@@ -11,18 +11,18 @@ namespace ReservationSite.Areas.Reservations.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ReservationsDbContext dbContext;
+        private readonly Services.IReservationDataService dataService;
 
-        public IndexModel(ReservationsDbContext dbContext)
+        public IndexModel(Services.IReservationDataService dataService)
         {
-            this.dbContext = dbContext;
+            this.dataService = dataService;
         }
 
         public List<Reservation> Reservations { get; set; }
 
         public void OnGet()
         {
-            var data = (from Reservations in dbContext.Reservations select Reservations);
+            var data = (from Reservations in dataService.GetReservationAll() select Reservations);
             this.Reservations = data.ToList<Reservation>();
         }
 
