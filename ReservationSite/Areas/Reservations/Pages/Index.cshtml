@@ -1,0 +1,11 @@
+﻿@page
+@using ReservationSite.Areas.Reservations.Pages
+@model ReservationSite.Areas.Reservations.Pages.IndexModel
+@{
+}
+
+@{ foreach (ReservationSite.Data.Reservation item in Model.Reservations)
+    {
+        <div>@item.StartDate | @item.EndDate | @item.UserId</div>
+    }
+}
