@@ -34,12 +34,10 @@ namespace ReservationSite
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            /// Setup the Database for Identity and authentication
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<ReservationsDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("ReservationDbConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddAuthentication()
@@ -48,6 +46,12 @@ namespace ReservationSite
                 //.AddTwitter(options => { })
                 //.AddFacebook(options => { options.ClientId = "";  })
                 ;
+
+            /// Setup the Database for Reseruvations
+            services.AddDbContext<ReservationsDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("ReservationDbConnection")));
+            services.AddScoped<Services.IReservationDataService, Services.ReservationSQLService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
