@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -22,8 +23,15 @@ namespace ReservationSite.Areas.Reservations.Pages
 
         public void OnGet()
         {
-            var data = (from Reservations in dataService.GetReservationAll() select Reservations);
-            this.Reservations = data.ToList<Reservation>();
+            try
+            {
+                var data = (from Reservations in dataService.GetReservationAll() select Reservations);
+                this.Reservations = data.ToList<Reservation>();
+            }
+            catch (SqlException)
+            {
+                // error getting database connection or running the query.
+            }
         }
 
         public void OnPost()
