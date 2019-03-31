@@ -1,6 +1,5 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -12,31 +11,18 @@ namespace ReservationSite.Areas.Reservations.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly Services.IReservationDataService dataService;
+        private readonly ReservationSite.Data.ReservationsDbContext _context;
 
-        public IndexModel(Services.IReservationDataService dataService)
+        public IndexModel(ReservationSite.Data.ReservationsDbContext context)
         {
-            this.dataService = dataService;
+            _context = context;
         }
 
-        public List<Reservation> Reservations { get; set; }
+        public IList<Reservation> Reservation { get;set; }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            try
-            {
-                var data = (from Reservations in dataService.GetReservationAll() select Reservations);
-                this.Reservations = data.ToList<Reservation>();
-            }
-            catch (SqlException)
-            {
-                // error getting database connection or running the query.
-            }
-        }
-
-        public void OnPost()
-        {
-
+            Reservation = await _context.Reservations.ToListAsync();
         }
     }
 }
