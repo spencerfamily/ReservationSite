@@ -1,70 +1,35 @@
-﻿    <!-- JS Dependencies -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://npmcdn.com/moment@2.14.1"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
-<!-- CSS Styles -->
-<link rel="stylesheet" href="ReservationSite/wwwroot/css/fullcalendar.main.min.css" />
+﻿<!-- CSS Styles -->
+<link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
+<link href='~/packages/fullcalendar-4.0.2/packages/core/main.css' rel='stylesheet' />
+<link href='~/packages/fullcalendar-4.0.2/packages/daygrid/main.css' rel='stylesheet' />
+<link href='~/packages/fullcalendar-4.0.2/packages/bootstrap/main.css' rel='stylesheet' />
 
-<!--
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.print.css">
+<!--JS-->
+<script src='~/packages/fullcalendar-4.0.2/packages/core/main.js'></script>
+<script src='~/packages/fullcalendar-4.0.2/packages/daygrid/main.js'></script>
+<script src='~/packages/fullcalendar-4.0.2/packages/bootstrap/main.js'></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
+<div id="calendar"></div>
 
-<script>
-    document.onload(
-        //    document.addEventListener('DOMContentLoaded',
-        function () {
-            var calendarEl = document.getElementById('calendar');
-
-            var calendar = new FullCalendar.Calendar(calendarEl, {});
-
-            calendar.render();
-        });
-
-</script>
--->
-
-<div id='calendar'></div>
 <script type="text/javascript">
-    $(document).ready(function () {
-        if (window.jQuery) {
-            alert("yup");
-        }
-        else {
-            alert("HELP");
-        }
+    document.addEventListener('DOMContentLoaded', function () {
+        //alert("HERE");
+        var calendarEl = document.getElementById('calendar');
 
-        $('#calendar').fullCalendar({
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: [ 'dayGrid', 'bootstrap' ],
+            timeZone: 'UTC',
+            themeSystem: 'bootstrap',
+            header: {
+                left: 'prev,next,today',
+                center: 'title',
+                right: ''
+            },
+            //weekNumbers: true,
+            eventLimit: true, // allow "more" link when too many events
+            //events: 'https://fullcalendar.io/demo-events.json'
         });
-        /*
-          // Fetch our events
-          $.ajax({
-              url: "https://data.oregon.gov/resource/yid5-c4eq.json",
-            method: "GET",
-            datatype: "json",
-            data: {
-              "$where" : "start_date_time > '" + moment().subtract(31, 'days').format("YYYY-MM-DDT00:00:00") + "'",
-              "city" : "Portland",
-              "$order" : "start_date_time DESC"
-            }
-          }).done(function(response) {
-            // Parse our events into an event object for FullCalendar
-            var events = [];
-            $.each(response, function(idx, e) {
-              events.push({
-                start: e.start_date_time,
-                end: e.end_date_time,
-                title: e.meeting_title,
-                url: e.web_link
-              });
-            });
-            $('#calendar').fullCalendar({
-              events: events
-            });
-          });
-        */
+
+        calendar.render();
     });
 </script>
