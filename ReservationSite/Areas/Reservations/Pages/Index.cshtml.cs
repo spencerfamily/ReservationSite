@@ -18,11 +18,11 @@ namespace ReservationSite.Areas.Reservations.Pages
             _context = context;
         }
 
-        public IList<Reservation> Reservation { get;set; }
+        public IList<Reservation> Reservations { get; set; }
 
         public async Task OnGetAsync()
         {
-            Reservation = await _context.Reservations.ToListAsync();
+            Reservations = await _context.Reservations.ToListAsync();
         }
     }
 }

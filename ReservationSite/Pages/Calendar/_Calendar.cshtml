@@ -1,13 +1,14 @@
-﻿<!-- CSS Styles -->
+﻿@model IList<Reservation>
+<!-- CSS Styles -->
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
 <link href='~/packages/fullcalendar-4.0.2/packages/core/main.css' rel='stylesheet' />
 <link href='~/packages/fullcalendar-4.0.2/packages/daygrid/main.css' rel='stylesheet' />
 <link href='~/packages/fullcalendar-4.0.2/packages/bootstrap/main.css' rel='stylesheet' />
 <style>
     reserved {
-        display:inline-block;
-        height:150px;
-        background-color:red;
+        display: inline-block;
+        height: 150px;
+        background-color: red;
     }
 </style>
 
@@ -20,21 +21,23 @@
 
 <script type="text/javascript">
     var events = [
-        {
-            id: '730e9820-20f9-4b6a-a0d0-af0156c83b9b',
-            allDay: true,
-            start: '2019-04-14 00:00:00',
-            end: '2019-04-21 00:00:00',
-            title: 'Herrick and Fiona',
-            className: 'reserved'
-        },
-        {
-            id: '47B08454-B3E7-4032-883B-1EF119067BE9',
-            allDay: true,
-            start: '2019-04-21',
-            end: '2019-04-28',
-            title: 'Issac'
+        @{
+            List<string> resItems = new List<string>();
+            foreach (var Res in Model)
+            {
+                string resItem = "{";
+                resItem += $"\n\t\t\tid: '{Res.Id}',";
+                resItem += $"\n\t\t\tallDay: true,";
+                resItem += $"\n\t\t\tstart: '{Res.StartDate.ToShortDateString()}',";
+                resItem += $"\n\t\t\tend: '{Res.EndDate.ToShortDateString()}',";
+                resItem += $"\n\t\t\ttitle: '{Res.UserId}'";
+
+                resItem += "\n\t\t}";
+                resItems.Add(resItem);
+            }
+            string resRet = String.Join(",\n", resItems);
         }
+        @Html.Raw(resRet)
     ];
     document.addEventListener('DOMContentLoaded', function () {
         //alert("HERE");

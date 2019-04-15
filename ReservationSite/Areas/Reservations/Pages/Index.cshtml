@@ -14,19 +14,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Reservation[0].UserId)
+                @Html.DisplayNameFor(model => model.Reservations[0].UserId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Reservation[0].StartDate)
+                @Html.DisplayNameFor(model => model.Reservations[0].StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Reservation[0].EndDate)
+                @Html.DisplayNameFor(model => model.Reservations[0].EndDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Reservation)
+        @foreach (var item in Model.Reservations)
         {
             <tr>
                 <td>
@@ -48,4 +48,4 @@
     </tbody>
 </table>
 
-<partial name="~/Pages/Calendar/_Calendar.cshtml" />
+<partial name="~/Pages/Calendar/_Calendar.cshtml" model="@Model.Reservations" />
