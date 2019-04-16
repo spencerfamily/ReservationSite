@@ -6,6 +6,7 @@
 }
 
 <h2>Index</h2>
+<partial name="~/Pages/Calendar/_Calendar.cshtml" model="@Model.Reservations" />
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -47,5 +48,3 @@
         }
     </tbody>
 </table>
-
-<partial name="~/Pages/Calendar/_Calendar.cshtml" model="@Model.Reservations" />

@@ -5,9 +5,8 @@
 <link href='~/packages/fullcalendar-4.0.2/packages/daygrid/main.css' rel='stylesheet' />
 <link href='~/packages/fullcalendar-4.0.2/packages/bootstrap/main.css' rel='stylesheet' />
 <style>
-    reserved {
-        display: inline-block;
-        height: 150px;
+    .reserved {
+        display:inline-block;
         background-color: red;
     }
 </style>
@@ -31,7 +30,14 @@
                 resItem += $"\n\t\t\tstart: '{Res.StartDate.ToShortDateString()}',";
                 resItem += $"\n\t\t\tend: '{Res.EndDate.ToShortDateString()}',";
                 resItem += $"\n\t\t\ttitle: '{Res.UserId}'";
-
+                if (Res.UserId == Guid.Empty)
+                {
+                    resItem += ",\n\t\t\tclassName: 'open'";
+                }
+                else
+                {
+                    resItem += ",\n\t\t\tclassName: 'reserved'";
+                }
                 resItem += "\n\t\t}";
                 resItems.Add(resItem);
             }
