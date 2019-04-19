@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ReservationSite</title>
+    <title>@ViewData["Title"] - Spencer Camp</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css">
@@ -26,14 +26,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-page="/Index" class="navbar-brand">ReservationSite</a>
+                <a asp-page="/Index" class="navbar-brand">Spencer Camp</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-page="/Index">Home</a></li>
                     <li><a asp-page="/About">About</a></li>
                     <li><a asp-page="/Contact">Contact</a></li>
-                </ul>
+                    <li><a asp-area="Reservations" asp-page="/Index">Reservations</a></li>
+</ul>
                 <partial name="_LoginPartial" />
             </div>
         </div>
@@ -45,7 +46,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2019 - ReservationSite</p>
+            <p>&copy; 2019 - <a href="mailto://GlutenFreeCode@HerrickSpencer.com?Subject=ReservationSite">Herrick Spencer</a></p>
         </footer>
     </div>
 

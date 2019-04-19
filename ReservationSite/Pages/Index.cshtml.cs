@@ -9,9 +9,12 @@ namespace ReservationSite.Pages
 {
     public class IndexModel : PageModel
     {
+        public ContactModel ContactModel { get; private set; }
+
         public void OnGet()
         {
-
+            this.ContactModel = new ContactModel();
+            ContactModel.OnGet();
         }
     }
 }
